@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import ProductCard from './ProductCard';
 import OrderStatusButton from './OrderStatusButton';
+
+import {CartContext, CartDispatchContext, cartReducer} from './cart/cartContext';
 
 /**
  * 
@@ -16,6 +18,8 @@ import OrderStatusButton from './OrderStatusButton';
  */
 
 function App() {
+  const [cart, dispatch] = useReducer(cartReducer, []);
+
   const sampleProduct = {
     title: 'Wireless Mouse',
     sku: 'MSE-001',
@@ -24,15 +28,20 @@ function App() {
   };
 
   return (
-    <div className="position-relative vh-100 bg-light">
-      {/* Top-right counter button */}
-      <OrderStatusButton />
+    <CartContext value={cart}>
+      <CartDispatchContext value={dispatch}>
+        <div className="position-relative vh-100 bg-light">
+          {/* Top-right counter button */}
+          <OrderStatusButton />
 
-      {/* Centered Product Card */}
-      <div className="d-flex justify-content-center align-items-center h-100">
-        <ProductCard product={sampleProduct} />
-      </div>
-    </div>
+          {/* Centered Product Card */}
+          <div className="d-flex justify-content-center align-items-center h-100">
+            <ProductCard product={sampleProduct} />
+          </div>
+        </div>
+      </CartDispatchContext>
+      </CartContext>
+    
   );
 }
 

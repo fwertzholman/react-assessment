@@ -1,15 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {CartContext} from './cart/cartContext';
 
 // OrderStatusButton component
 const OrderStatusButton = () => {
-  // TODO: Implement state management for counting added products
-  // This could use React context, props, or any state logic
-  const productCount = 0; // Replace this with dynamic value in assessment
+  const cart = useContext(CartContext);
 
   return (
     <div className="position-absolute top-0 end-0 m-3">
       <button className="btn btn-outline-secondary">
-        Products in Order: {productCount}
+        Products in Order: {cart.length}
       </button>
     </div>
   );
