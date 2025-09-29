@@ -1,6 +1,7 @@
-import React, {useReducer} from 'react';
+import React, {useState, useReducer} from 'react';
 import ProductCard from './ProductCard';
 import OrderStatusButton from './OrderStatusButton';
+import OrderModal from './OrderModal';
 
 import {CartContext, CartDispatchContext, cartReducer} from './cart/cartContext';
 
@@ -18,6 +19,7 @@ import {CartContext, CartDispatchContext, cartReducer} from './cart/cartContext'
  */
 
 function App() {
+  const [isModalOpen, setModalOpen] = useState(false);
   const [cart, dispatch] = useReducer(cartReducer, []);
 
   const sampleProduct = {
@@ -32,15 +34,22 @@ function App() {
       <CartDispatchContext value={dispatch}>
         <div className="position-relative vh-100 bg-light">
           {/* Top-right counter button */}
-          <OrderStatusButton />
+          <OrderStatusButton 
+            onClick={() => setModalOpen(true)}
+          />
 
           {/* Centered Product Card */}
           <div className="d-flex justify-content-center align-items-center h-100">
             <ProductCard product={sampleProduct} />
           </div>
         </div>
+        <OrderModal
+          show={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          products={cart}
+        />
       </CartDispatchContext>
-      </CartContext>
+    </CartContext>
     
   );
 }
