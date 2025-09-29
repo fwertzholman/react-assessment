@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
+
+import {CartContext, CartDispatchContext} from './cart/cartContext';
 
 // ProductCard component
 const ProductCard = ({ product }) => {
@@ -9,6 +11,24 @@ const ProductCard = ({ product }) => {
   //   description: 'This is a sample description for the product.',
   //   imageUrl: 'optional image URL (fallback to placeholder if missing)'
   // }
+  const cart = useContext(CartContext);
+  const dispatch = useContext(CartDispatchContext);
+
+  const [hasProduct, setHasProduct] = useState(false);
+
+  useEffect(() => {
+    setHasProduct(cart.some( p => p.sku === product.sku));
+  }, [product, cart]);
+
+  const onClickToggleProduct = () => hasProduct
+    ? dispatch({
+      type: 'remove',
+      sku: product.sku
+    })
+    : dispatch({
+      type: 'add',
+      product
+    });
 
   return (
     <div className="card shadow-sm m-3" style={{ width: '18rem' }}>
@@ -29,8 +49,8 @@ const ProductCard = ({ product }) => {
         <p className="card-text text-secondary" style={{ fontSize: '0.9rem' }}>
           {product.description}
         </p>
-        <button className="btn btn-primary w-100">
-          Add to Order
+        <button className="btn btn-primary w-100" onClick={onClickToggleProduct}>
+          {hasProduct ? "Remove from cart" : "Add to cart"}
         </button>
       </div>
     </div>
