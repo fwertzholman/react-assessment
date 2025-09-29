@@ -1,0 +1,38 @@
+name: Codespace Environment Validation
+
+on:
+  push:
+    branches: [ main ]
+    paths: 
+      - '.devcontainer/**'
+      - 'package*.json'
+      - 'playwright.config.js'
+
+jobs:
+  validate-codespace:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+    
+    - name: Run setup validation
+      run: npm run test:e2e -- getting-started
+    
+    - name: Validate dev server starts
+      run: |
+        npm run dev &
+        sleep 10
+        curl -f http://localhost:3000
+        pkill -f "vite"

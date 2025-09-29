@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Wireless Mouse",
+    "sku": "MSE-001",
+    "description": "Ergonomic wireless mouse with USB-C charging.",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "title": "Mechanical Keyboard",
+    "sku": "KEY-002",
+    "description": "Tactile mechanical keyboard with customizable RGB lighting.",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "title": "HD Webcam",
+    "sku": "CAM-003",
+    "description": "1080p HD webcam with built-in microphone and tripod mount.",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "title": "Laptop Stand",
+    "sku": "STD-004",
+    "description": "Aluminum laptop stand for ergonomic desk setups.",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "title": "Noise-Canceling Headphones",
+    "sku": "AUD-005",
+    "description": "Over-ear Bluetooth headphones with active noise cancellation.",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "title": "USB-C Hub",
+    "sku": "HUB-006",
+    "description": "6-in-1 USB-C hub with HDMI, USB 3.0, and SD card support.",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "title": "Portable SSD 1TB",
+    "sku": "SSD-007",
+    "description": "Compact 1TB external SSD with fast USB 3.1 Gen 2 speeds.",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "title": "Ergonomic Office Chair",
+    "sku": "CHR-008",
+    "description": "Adjustable mesh office chair with lumbar support.",
+    "imageUrl": "https://placehold.co/50"
+  }
+]
