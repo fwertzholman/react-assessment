@@ -1,4 +1,4 @@
-import React, {useState, useReducer} from 'react';
+import React, {useState, useReducer, useEffect} from 'react';
 import ProductCard from './ProductCard';
 import OrderStatusButton from './OrderStatusButton';
 import OrderModal from './OrderModal';
@@ -19,8 +19,18 @@ import {CartContext, CartDispatchContext, cartReducer} from './cart/cartContext'
  */
 
 function App() {
+  const [products, setProducts] = useState([]);
+
   const [isModalOpen, setModalOpen] = useState(false);
   const [cart, dispatch] = useReducer(cartReducer, []);
+
+  useEffect(() => {
+    fetch('products.json')
+      .then(response=>response.json())
+      .then(data => {
+        setProducts(data);
+      });
+  }, []);
 
   const sampleProduct = {
     title: 'Wireless Mouse',
@@ -39,8 +49,12 @@ function App() {
           />
 
           {/* Centered Product Card */}
-          <div className="d-flex justify-content-center align-items-center h-100">
-            <ProductCard product={sampleProduct} />
+          <div className="d-flex justify-content-center align-items-center h-100 row container">
+            {products.map(product =>
+              <div className="col-sm-3">
+                <ProductCard key={product.sku} product={product} />
+              </div>
+            )}
           </div>
         </div>
         <OrderModal
