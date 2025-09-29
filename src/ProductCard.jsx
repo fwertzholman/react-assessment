@@ -49,8 +49,8 @@ const ProductCard = ({ product }) => {
         <p className="card-text text-secondary" style={{ fontSize: '0.9rem' }}>
           {product.description}
         </p>
-        <button className="btn btn-primary w-100" onClick={onClickToggleProduct}>
-          {hasProduct ? "Remove from cart" : "Add to cart"}
+        <button className={`btn btn-primary w-100 ${hasProduct && "btn-success"}`} onClick={onClickToggleProduct}>
+          {hasProduct ? "Remove from Order" : "Add to Order"}
         </button>
       </div>
     </div>
